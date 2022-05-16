@@ -1,0 +1,36 @@
+
+<div class='container'>
+    <h1 class='title'>Articles</h1>
+    <table class='table-responsive'>
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>Body</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <% @articles.each do  |article| %>
+            <% unless article.archived? %>
+            <tr>
+                <td><%= article.title %> </td>
+                <td><%= article.body %> </td>
+                <td><%= article.created_at %> </td>
+                <td>
+                    <%= link_to 'show', article %> 
+                    <%= link_to 'edit', edit_article_path(article) %>
+                    <%= link_to 'delete', article_path(article), data:{
+                        turbo_method: :delete,
+                        turbo_confirm: "Are your sure?"
+                    } %>
+                </td>
+            <tr>
+            <%end %>
+        <% end %>
+
+        </tbody>
+    </table>
+    <div class='add'> <%= link_to 'new Article', new_article_path%> </a></div>
+</container>

@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class='title'>Article Details</h1>
+  <h2><%= @article.title %></h2>
+  <h5 style="color:#b3adad;"><%= @article.created_at %> </h5> 
+  <p><%= @article.body %> </p>
+  <%= link_to 'Edit article', edit_article_path(@article) %>
+  <%= link_to 'Delete Article', article_path(@article), data:{
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+  } %>
+
+  <h2>Comments</h2>
+  <%= render @article.comments %>
+
+  <h2>Add a comment:</h2>
+  <%= render 'comments/form' %>
+</div>
